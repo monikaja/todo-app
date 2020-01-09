@@ -1,9 +1,9 @@
 <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-<li class="completed">
+<li class="completed" [ngClass]="{'completed': todo.completed, 'editing': editing }">
   <div class="view">
-    <input class="toggle" type="checkbox" checked>
-    <label>Taste JavaScript</label>
+    <input class="toggle" type="checkbox" [formControl]="checkField">
+    <label (dblclick)="edit()">{{todo.text}}</label>
     <button class="destroy"></button>
   </div>
-  <input class="edit" value="Create a TodoMVC template">
+  <input class="edit" [value]="todo.text" [formControl]="txtInput" #txtInputElement (blur)="endEdition()">
 </li>
