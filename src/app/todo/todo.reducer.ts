@@ -3,7 +3,7 @@ import {Todo} from "./model/todo.model";
 
 const todo1 = new Todo('Save the world');
 const todo2 = new Todo('Save the world again');
-todo2.completed = true;
+todo2.done = true;
 const initialState: Todo [] = [todo1, todo2];
 
 export function todoReducer(state = initialState,
@@ -18,7 +18,7 @@ export function todoReducer(state = initialState,
         if (todoEdit.id === action.id) {
           return {
             ...todoEdit,
-            completed: !todoEdit.completed
+            done: !todoEdit.done
           }
         }
         return todoEdit;
@@ -37,6 +37,14 @@ export function todoReducer(state = initialState,
     }
     case fromTodo.DELETE_TODO: {
       return state.filter((todo) => todo.id !== action.id);
+    }
+    case fromTodo.TOGGLE_ALL_TODO: {
+      return state.map((todoEdit: Todo) => {
+        return {
+          ...todoEdit,
+          done: action.done
+        }
+      });
     }
     default:
       return state;
