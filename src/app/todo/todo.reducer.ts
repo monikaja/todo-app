@@ -7,7 +7,7 @@ todo2.done = true;
 const initialState: Todo [] = [todo1, todo2];
 
 export function todoReducer(state = initialState,
-                            action: fromTodo.Actions) {
+                            action: fromTodo.Actions) : Todo[]{
   switch (action.type) {
     case fromTodo.ADD_TODO: {
       const todo = new Todo(action.text);
