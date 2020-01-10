@@ -46,6 +46,9 @@ export function todoReducer(state = initialState,
         }
       });
     }
+    case fromTodo.REMOVE_TODO_BY_STATE: {
+      return state.filter((todo: Todo) => todo.done !== action.done);
+    }
     default:
       return state;
   }

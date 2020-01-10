@@ -3,6 +3,7 @@ import {Action} from "@ngrx/store";
 export const ADD_TODO = '[TODO] Add todo';
 export const TOGGLE_TODO = '[TODO] Complete todo';
 export const TOGGLE_ALL_TODO = '[TODO] Complete all todos';
+export const REMOVE_TODO_BY_STATE = '[TODO] Remove todos by state';
 export const UPDATE_TODO = '[TODO] Update text';
 export const DELETE_TODO = '[TODO] Delete todo';
 
@@ -46,8 +47,17 @@ export class ToggleAllTodoAction implements Action {
 
 }
 
+export class RemoveTodoDoneAction implements Action {
+  readonly type = REMOVE_TODO_BY_STATE;
+
+  constructor(public done: boolean) {
+  }
+
+}
+
 export type Actions = AddTodoAction
   | UpdateTodoAction
   | DeleteTodoAction
   | ToggleAllTodoAction
+  | RemoveTodoDoneAction
   | ToggleTodoAction;

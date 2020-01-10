@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as fromFilter from "../../filter/filter.action";
+import * as fromTodo from "../todo.actions";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../app.reducers";
 import {Todo} from "../model/todo.model";
@@ -27,6 +28,11 @@ export class TodoFooterComponent implements OnInit {
 
   changeFilter(newFilter: fromFilter.validFilters) {
     const action = new fromFilter.SetFilterAction(newFilter);
+    this.store.dispatch(action);
+  }
+
+  removeDone() {
+    const action = new fromTodo.RemoveTodoDoneAction(true);
     this.store.dispatch(action);
   }
 }
